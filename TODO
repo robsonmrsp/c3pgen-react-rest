@@ -1,0 +1,12 @@
+
+21/09/2020
+[ ] - Criar um hook proprio para encapsular TODOs esses que manipulam informacao de consulta e paginacao.
+
+[ ] - Fazer o Pager que é devolvido pelo backend devolver tambem as informacoes para reconstruir o pagination no cliente
+      devolver o pageZise, order, direction, etc...
+
+XX/XX/2019
+[ ] - Implement a Generic Input to wrapper all the form inputs.
+      https://merictaze.com/posts/creating-a-unified-formik-input-field-to-support-all-input-types-seamlessly/
+
+[ ] - rescrever : https://github.com/gitbrent/bootstrap-switch-button-react/blob/master/src/bootstrap-switch-button-react.js

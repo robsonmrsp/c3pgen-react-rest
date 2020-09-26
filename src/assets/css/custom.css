@@ -1,0 +1,56 @@
+ .media {
+     /* padding-top: 5px; */
+     display: inherit;
+     align-items: center;
+     margin-right: 10px;
+ }
+
+ .avatar{
+     margin-right: 10px;
+ }
+
+ .data_table_paginate {
+    float: right;
+    text-align: right;
+    padding-top: 0.25em;
+}
+table.fixed {
+     table-layout:fixed;
+}
+
+table.fixed td { 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+table.fixed th:nth-of-type(1) {width:35%;}
+
+ @media (max-width: 1200px) {
+     .avatar-media-img-wrap {
+         padding-top: 5px;
+     }
+     .avatar{
+        margin-right: -10px;
+    }
+     .dropdown-toggle:after{
+         display: none;
+     }
+ }
+
+ .nav-link-text > a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
+  table > tbody > tr > td > a :hover{
+      cursor: pointer;
+  }
+  
+  table > thead > tr > th > a :hover{
+      cursor: pointer;
+  }
+
+  /* Just for radioboxes */
+  .switch {
+      display: flex;
+      max-width: 80px;
+  }
