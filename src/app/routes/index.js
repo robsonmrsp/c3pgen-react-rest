@@ -15,7 +15,7 @@ const routes = [
     component: lazy(() => import('@/app/pages/FormMovie')),
   },
   {
-    name: 'editditMovie',
+    name: 'editMovie',
     path: '/editMovie/:id',
     exact: true,
     component: lazy(() => import('@/app/pages/FormMovie')),

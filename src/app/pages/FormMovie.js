@@ -1,55 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import validate from 'validate.js';
-import {
-  Row, Col, Form, Button,
-} from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
+import { Field, Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
+import { useMutation, useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
-import { Formik, Field } from 'formik';
-import { Breadcrumb } from '@/common/ui/container/breadcrumb/Breadcrumb';
-import { DateInput } from '@/common/ui/core/components/DateInput';
-import { NumberInput } from '@/common/ui/core/components/NumberInput';
-import { Page } from '@/common/ui/container/page';
+import validate from 'validate.js';
+import HttpRequest from '../services/HttpRequest';
 import ModalMovie from './ModalMovie';
 
-// usar https://react-query.tanstack.com/docs/quick-start useMutation
-const SAVE_MOVIE = gql`
-  mutation saveMovie($movie: MovieInput!) {
-    movie:saveMovie(movie: $movie) {
-      id
-      name
-      originalTitle
-    }
-  }
-`;
-const QUERY_MOVIE = gql`
-query getMovie($id:Int){
-  movie:getMovie(id: $id) {
-    id
-    name
-    originalTitle
-    releaseDate
-  }
-}
-`;
+import { Breadcrumb } from '@/common/ui/container/breadcrumb/Breadcrumb';
+import { Page } from '@/common/ui/container/page';
+import { DateInput } from '@/common/ui/core/components/DateInput';
+import { NumberInput } from '@/common/ui/core/components/NumberInput';
+
+
+const api = new HttpRequest('rs/crud/movies');
 
 const FormMovie = () => {
-  const [saveMovie] = useMutation(SAVE_MOVIE);
-  const [movie, setMovie] = useState({});
   const { id } = useParams();
+  const { data } = useQuery([id], api.getById);
+  const [movie, setMovie] = useState({});
+
+  const [saveMovie, { status, isIdle, isLoading, isSuccess, isError, error, reset }] = useMutation(api.saveMovie, {
+    onSuccess(dat) {
+      console.log(dat);
+    },
+    onError(dat) {
+      console.error(dat);
+    },
+  });
 
   useEffect(() => {
-    if (id) {
-      const callAsync = async () => {
-        const { data } = await client.query({ query: QUERY_MOVIE, variables: { id } });
-        console.log(data.movie);
-        setMovie(data.movie);
-      };
-      callAsync();
+    if (data) {
+      setMovie(data);
     }
-  }, []);
+  }, [data]);
 
   const rules = {
     name: {
@@ -58,9 +45,9 @@ const FormMovie = () => {
         allowEmpty: false,
       },
     },
-    sinopse: {
+    synopsis: {
       presence: {
-        message: 'Sinopse canot be empty',
+        message: 'synopsis canot be empty',
         allowEmpty: false,
       },
     },
@@ -127,7 +114,7 @@ const FormMovie = () => {
                             />
                             <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
                           </Form.Group>
-                          <Form.Group as={Col} md="6">
+                          {/* <Form.Group as={Col} md="6">
                             <Form.Label>Movie</Form.Label>
                             <Field
                               name="movie"
@@ -136,18 +123,18 @@ const FormMovie = () => {
                               onChange={(value) => setFieldValue('movie', value)}
                             />
                             <Form.Control.Feedback></Form.Control.Feedback>
-                          </Form.Group>
+                          </Form.Group> */}
                           <Form.Group as={Col} md="6">
-                            <Form.Label>Sinopse</Form.Label>
+                            <Form.Label>synopsis</Form.Label>
                             <Form.Control
-                              name="sinopse"
+                              name="synopsis"
                               as="textarea"
                               rows="3"
-                              value={values.sinopse}
+                              value={values.synopsis}
                               onChange={handleChange}
-                              isInvalid={!!errors.sinopse}
+                              isInvalid={!!errors.synopsis}
                             />
-                            <Form.Control.Feedback type={errors.sinopse ? 'invalid' : 'valid'}>{errors.sinopse}</Form.Control.Feedback>
+                            <Form.Control.Feedback type={errors.synopsis ? 'invalid' : 'valid'}>{errors.synopsis}</Form.Control.Feedback>
                           </Form.Group>
 
                           <Form.Group as={Col} md="6">

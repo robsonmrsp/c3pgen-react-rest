@@ -17,6 +17,11 @@ export default class HttpRequest {
     return headers;
   }
 
+  getById = async (id) => {
+    const response = await axios.get(`${BASE_URL}${this.url}/${id}`, { headers: this.createAuthHeaders() });
+    return response.data;
+  }
+
   getPage = async (params) => {
     const response = await axios.get(BASE_URL + this.url, { headers: this.createAuthHeaders(), params });
     return response.data;
