@@ -74,4 +74,6 @@ const TablePagination = ({ onPaginate, page, totalItems, pageSize }) => {
   );
 };
 
-export { TablePagination as Pagination };
+const CustomPagination = React.memo(TablePagination);
+
+export { CustomPagination as Pagination };
