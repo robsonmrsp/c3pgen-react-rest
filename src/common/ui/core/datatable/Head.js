@@ -51,7 +51,7 @@ export const Head = ({ columns, onSort }) => {
       <tr>
         {
           columns.map(({ head, field, sortable }) => (
-            <th key={field} onClick={() => { setColumnOrdered(field); }}>
+            <th key={head} onClick={() => { setColumnOrdered(field); }}>
               <Cell sortable={sortable} head={head} field={field} onSort={onSort} reset={columnName === field} />
             </th>
           ))
