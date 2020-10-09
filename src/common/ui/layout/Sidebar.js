@@ -10,7 +10,7 @@ const Sidebar = () => {
 
   return (
     <nav className="hk-nav hk-nav-light">
-      <a href="javascript:void(0);" id="hk_nav_close" className="hk-nav-close">
+      <a id="hk_nav_close" className="hk-nav-close">
         <span className="feather-icon">
           <i data-feather="x" />
         </span>
@@ -21,7 +21,6 @@ const Sidebar = () => {
             <li className="nav-item">
               <a
                 className="nav-link"
-                href="javascript:void(0);"
                 data-toggle="collapse"
                 data-target="#dash_drp"
               >

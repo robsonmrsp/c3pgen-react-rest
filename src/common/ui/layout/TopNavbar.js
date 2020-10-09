@@ -9,7 +9,6 @@ const TopNavbar = () => (
     <a
       id="navbar_toggle_btn"
       className="navbar-toggle-btn nav-link-hover"
-      href="javascript:void(0);"
     >
       <i className="ion ion-ios-menu" />
     </a>
@@ -25,7 +24,6 @@ const TopNavbar = () => (
         <a
           id="settings_toggle_btn"
           className="nav-link nav-link-hover"
-          href="javascript:void(0);"
         >
           <i className="ion ion-ios-settings" />
         </a>

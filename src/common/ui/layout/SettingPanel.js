@@ -11,7 +11,6 @@ const SettingPanel = () => (
             alt="brand"
           />
           <a
-            href="javascript:void(0);"
             id="settings_panel_close"
             className="settings-panel-close"
           >
